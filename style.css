@@ -120,6 +120,10 @@ nav { display: flex; align-items: center; gap: 3rem; }
 }
 
 .hamburger { display: none; font-size: 1.8rem; color: var(--gold); cursor: pointer; }
+.mobile-whatsapp {
+  display: none;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
   nav {
@@ -159,6 +163,39 @@ nav { display: flex; align-items: center; gap: 3rem; }
   #menuIcon {
     font-size: 2rem;
     color: var(--gold);
+  }
+    /* Show mobile WhatsApp button */
+  .mobile-whatsapp {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .mobile-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    color: var(--dark);
+    
+    padding: 10px 18px;        /* smaller */
+    font-size: 0.95rem;        /* smaller */
+    font-weight: 700;
+
+    border-radius: 40px;       /* small round button */
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(255,215,0,0.35);
+    transition: 0.3s ease;
+  }
+
+  .mobile-whatsapp-btn i {
+    font-size: 1.1rem; /* icon size */
+  }
+
+  .mobile-whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,215,0,0.55);
   }
 }
 
