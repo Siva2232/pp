@@ -16,7 +16,7 @@ html, body {
   scroll-behavior: smooth;
 }
 
-body { padding-top: 100px; }
+body { padding-top: 0px; }
 
 /* Particles Background */
 .particles {
@@ -120,6 +120,47 @@ nav { display: flex; align-items: center; gap: 3rem; }
 }
 
 .hamburger { display: none; font-size: 1.8rem; color: var(--gold); cursor: pointer; }
+/* Mobile Styles */
+@media (max-width: 768px) {
+  nav {
+    position: relative;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    background: rgba(15, 15, 23, 0.97);
+    flex-direction: column;
+    padding-top: 8rem;
+    gap: 2.5rem;
+    transition: right 0.4s ease;
+    border-left: 1px solid rgba(255,215,0,0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-links.show {
+    right: 0;
+  }
+
+  .hamburger {
+    display: block;
+    z-index: 2000;
+  }
+
+  /* Hide WhatsApp button in mobile */
+  .whatsapp-btn {
+    display: none;
+  }
+
+  /* Bigger close icon */
+  #menuIcon {
+    font-size: 2rem;
+    color: var(--gold);
+  }
+}
 
 /* Hero */
 /* === Variables === */
