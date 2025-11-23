@@ -19,25 +19,28 @@
   <div class="particles" id="particles"></div>
 
   <!-- Fixed Header -->
-  <header id="header">
-    <div class="logo">FX</div>
+ <header id="header">
+  <div class="logo">FX</div>
 
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
-      </div>
-    </nav>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
 
-    <button class="whatsapp-btn">
-      <i class="fab fa-whatsapp"></i> Book Now
-    </button>
-  </header>
+    <!-- TOGGLE BUTTON (hamburger / close) -->
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars" id="menuIcon"></i>
+    </div>
+  </nav>
+
+  <button class="whatsapp-btn">
+    <i class="fab fa-whatsapp"></i> Book Now
+  </button>
+</header>
+
 
   <!-- Hero Section -->
   <section class="hero" id="home">
@@ -458,41 +461,40 @@ const hamburger = document.getElementById('hamburger');
 const mobileClose = document.getElementById('mobileClose');
 const navLinks = document.getElementById('navLinks');
 const header = document.getElementById('header');
+  const menuIcon = document.getElementById("menuIcon");
 
-function openMenu() {
-  navLinks.classList.add('active');
-  hamburger.innerHTML = '<i class="fas fa-times"></i>';
-  document.body.style.overflow = 'hidden';
-}
+  // Toggle menu
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
 
-function closeMenu() {
-  navLinks.classList.remove('active');
-  hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-  document.body.style.overflow = 'auto';
-}
-
-// Toggle with hamburger
-hamburger.addEventListener('click', () => {
-  if (navLinks.classList.contains('active')) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
-});
-
-// Close with X button
-mobileClose.addEventListener('click', (e) => {
-  e.stopPropagation();
-  closeMenu();
-});
-
-// Close when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    closeMenu();
+    // Change icon (bars ↔ close)
+    if (navLinks.classList.contains("show")) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-times");
+    } else {
+      menuIcon.classList.remove("fa-times");
+      menuIcon.classList.add("fa-bars");
+    }
   });
-});
 
+  // Close menu when clicking a link
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      menuIcon.classList.remove("fa-times");
+      menuIcon.classList.add("fa-bars");
+    });
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
 // Header scroll effect + active link
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
